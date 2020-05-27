@@ -1,4 +1,5 @@
 // required framework imports
+require('dotenv').config();
 const express = require('express');
 const bodyparser = require('body-parser');
 const mongoose = require('mongoose');
@@ -7,8 +8,8 @@ const _ = require('lodash');
 // storing express in "app" for ease of use
 const app = express();
 
-// Mongoose boilerplate
-mongoose.connect("mongodb://localhost:27017/ToDoListDB", {
+// Mongoose boilerplate "mongodb://localhost:27017/ToDoListDB"
+mongoose.connect(process.env.MongoDB, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   useFindAndModify: false
@@ -150,7 +151,12 @@ app.get("/:customListName", function(req, res) {
   });
 });
 
+let port = process.env.PORT;
+if (port == null || port == "") {
+  port = 3000
+}
+
 // Loads server when localhost:3000 is put into the browser
-app.listen(3000, function() {
-  console.log("Server started on port 3000");
+app.listen(port, function() {
+  console.log("Server started");
 });
