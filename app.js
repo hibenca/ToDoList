@@ -4,6 +4,7 @@ const express = require('express');
 const bodyparser = require('body-parser');
 const mongoose = require('mongoose');
 const _ = require('lodash');
+const ejs = require('ejs');
 
 // storing express in "app" for ease of use
 const app = express();
